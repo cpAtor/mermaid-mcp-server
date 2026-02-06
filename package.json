@@ -1,0 +1,11 @@
+{
+  "name": "mermaid-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for rendering Mermaid diagrams with beautiful-mermaid and theme-aware UI",
+  "bin": {
+    "mermaid-mcp-server": "mermaid-mcp-server/dist/main.js"
+  },
+  "keywords": ["mcp", "mermaid", "diagram", "mcp-apps"],
+  "license": "ISC",
+  "type": "module"
+}

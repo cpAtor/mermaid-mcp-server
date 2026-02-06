@@ -1,2 +1,5 @@
 **/**/node_modules
 **/**/dist
+
+# But include the compiled MCP server (needed for npx from GitHub)
+!mermaid-mcp-server/dist/
