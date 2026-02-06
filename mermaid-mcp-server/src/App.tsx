@@ -18,6 +18,7 @@ import { Toolbar } from "./components/Toolbar.tsx";
 import { ErrorOverlay } from "./components/ErrorOverlay.tsx";
 import { ZoomPanContainer, type ZoomPanHandle } from "./components/ZoomPanContainer.tsx";
 import { DragSelector } from "./components/DragSelector.tsx";
+import { CodePanel } from "./components/CodePanel.tsx";
 
 export function App() {
   const [diagramData, setDiagramData] = useState<MermaidToolResult | null>(
@@ -28,6 +29,7 @@ export function App() {
   );
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [dragSelectEnabled, setDragSelectEnabled] = useState(false);
+  const [showCode, setShowCode] = useState(false);
   const zoomRef = useRef<ZoomPanHandle>(null);
 
   const handleToolResult = useCallback((result: CallToolResult) => {
@@ -150,7 +152,14 @@ export function App() {
         onZoomIn={() => zoomRef.current?.zoomIn()}
         onZoomOut={() => zoomRef.current?.zoomOut()}
         onZoomReset={() => zoomRef.current?.resetZoom()}
+        showCode={showCode}
+        onToggleCode={() => setShowCode((v) => !v)}
       />
+
+      {/* Code panel */}
+      {showCode && diagramData.markup && (
+        <CodePanel markup={diagramData.markup} />
+      )}
 
       {/* Error overlay for syntax errors */}
       {diagramData.syntaxError && (

@@ -20,6 +20,8 @@ interface ToolbarProps {
   onZoomIn: () => void;
   onZoomOut: () => void;
   onZoomReset: () => void;
+  showCode: boolean;
+  onToggleCode: () => void;
 }
 
 const buttonStyle: React.CSSProperties = {
@@ -58,6 +60,8 @@ export function Toolbar({
   onZoomIn,
   onZoomOut,
   onZoomReset,
+  showCode,
+  onToggleCode,
 }: ToolbarProps) {
   return (
     <div
@@ -134,6 +138,18 @@ export function Toolbar({
         </button>
         <button onClick={onZoomIn} style={buttonStyle} title="Zoom in">
           +
+        </button>
+
+        {/* Separator */}
+        <span style={{ borderLeft: "1px solid var(--color-border-default, #d0d7de)", height: 18 }} />
+
+        {/* Code view toggle */}
+        <button
+          onClick={onToggleCode}
+          style={showCode ? activeButtonStyle : buttonStyle}
+          title={showCode ? "Hide code" : "Show Mermaid code"}
+        >
+          {"</> Code"}
         </button>
 
         {/* Separator */}
