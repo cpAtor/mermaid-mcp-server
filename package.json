@@ -5,6 +5,9 @@
   "bin": {
     "mermaid-mcp-server": "mermaid-mcp-server/dist/main.js"
   },
+  "files": [
+    "mermaid-mcp-server/dist/"
+  ],
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "^1.0.1",
     "@modelcontextprotocol/sdk": "^1.26.0",

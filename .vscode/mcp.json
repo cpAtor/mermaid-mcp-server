@@ -4,15 +4,9 @@
       "type": "stdio",
       "command": "npx",
       "args": [
-        "tsx",
-        "${workspaceFolder}/mermaid-mcp-server/main.ts",
-        "--stdio"
-      ],
-      "env": {
-        "NODE_ENV": "production",
-        "THEME_FIX": "v2",
-        "FULLSCREEN_FIX": "v1"
-      }
+        "-y",
+        "github:cpAtor/mermaid-mcp-server"
+      ]
     }
   }
 }
