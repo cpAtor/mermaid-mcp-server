@@ -130,12 +130,10 @@ export function MermaidRenderer({
     <div
       ref={containerRef}
       style={{
-        display: "flex",
+        display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        minWidth: "100%",
-        minHeight: "100%",
-        padding: 24,
+        padding: 16,
       }}
     />
   );

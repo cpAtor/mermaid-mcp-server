@@ -48,11 +48,12 @@ const ZoomPanInner = forwardRef<ZoomPanHandle, { children: ReactNode }>(
           height: "100%",
         }}
         contentStyle={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "center",
+          minWidth: "100%",
+          minHeight: "100%",
+          paddingTop: 8,
         }}
       >
         {children}
