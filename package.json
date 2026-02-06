@@ -5,6 +5,11 @@
   "bin": {
     "mermaid-mcp-server": "mermaid-mcp-server/dist/main.js"
   },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.0.1",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^4.3.6"
+  },
   "keywords": ["mcp", "mermaid", "diagram", "mcp-apps"],
   "license": "ISC",
   "type": "module"
