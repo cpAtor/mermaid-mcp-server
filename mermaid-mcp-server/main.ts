@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * Entry point for running the MCP server.
  * Run with: npx tsx main.ts --stdio

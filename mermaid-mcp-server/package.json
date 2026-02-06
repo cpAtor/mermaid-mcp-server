@@ -1,15 +1,22 @@
 {
   "name": "mermaid-mcp-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "MCP server for rendering Mermaid diagrams with beautiful-mermaid and theme-aware UI",
+  "main": "dist/main.js",
+  "bin": {
+    "mermaid-mcp-server": "dist/main.js"
+  },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --noEmit ; tsc -p tsconfig.server.json ; cross-env INPUT=mcp-app.html vite build",
+    "build": "tsc --noEmit && tsc -p tsconfig.server.json && cross-env INPUT=mcp-app.html vite build",
     "serve": "tsx main.ts --stdio",
-    "dev": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts --stdio\""
+    "dev": "concurrently \"cross-env NODE_ENV=development INPUT=mcp-app.html vite build --watch\" \"tsx watch main.ts --stdio\"",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["mcp", "mermaid", "diagram", "mcp-apps"],
   "author": "",
   "license": "ISC",
   "type": "module",
