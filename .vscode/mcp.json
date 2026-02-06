@@ -10,7 +10,8 @@
       ],
       "env": {
         "NODE_ENV": "production",
-        "THEME_FIX": "v2"
+        "THEME_FIX": "v2",
+        "FULLSCREEN_FIX": "v1"
       }
     }
   }

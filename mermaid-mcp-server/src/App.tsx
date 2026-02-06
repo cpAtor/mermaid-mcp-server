@@ -63,7 +63,9 @@ export function App() {
 
   const { app, error: appError } = useApp({
     appInfo: { name: "mermaid-diagram", version: "1.0.0" },
-    capabilities: {},
+    capabilities: {
+      availableDisplayModes: ["inline", "fullscreen"],
+    },
     onAppCreated,
   });
 
@@ -105,12 +107,16 @@ export function App() {
   const toggleFullscreen = useCallback(async () => {
     if (!app) return;
     const newMode = isFullscreen ? "inline" : "fullscreen";
+    const ctx = app.getHostContext();
+    console.log("Host context:", JSON.stringify(ctx, null, 2));
+    console.log("Available display modes:", ctx?.availableDisplayModes);
+    console.log("Current display mode:", ctx?.displayMode);
     try {
-      await app.requestDisplayMode({ mode: newMode });
+      const result = await app.requestDisplayMode({ mode: newMode });
+      console.log("requestDisplayMode result:", JSON.stringify(result));
       setIsFullscreen(!isFullscreen);
-    } catch {
-      // Host may not support display mode changes
-      console.warn("Display mode change not supported");
+    } catch (err) {
+      console.warn("Display mode change failed:", err);
     }
   }, [app, isFullscreen]);
 
