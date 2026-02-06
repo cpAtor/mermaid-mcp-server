@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "mermaid-diagram": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "tsx",
+        "${workspaceFolder}/mermaid-mcp-server/main.ts",
+        "--stdio"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

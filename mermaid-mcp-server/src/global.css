@@ -1,0 +1,35 @@
+/* Global styles for Mermaid MCP App */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  background: var(--color-background-primary, transparent);
+  color: var(--color-text-primary, inherit);
+}
+
+/* Selection rectangle used by drag-select */
+.drag-selection-rect {
+  position: absolute;
+  border: 2px dashed var(--color-accent-fg, #0969da);
+  background: rgba(9, 105, 218, 0.08);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Highlight selected SVG elements */
+.mermaid-selected {
+  outline: 2px solid var(--color-accent-fg, #58a6ff);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
