@@ -36,8 +36,8 @@ export function CodePanel({ markup }: CodePanelProps) {
   return (
     <div
       style={{
-        borderBottom: "1px solid var(--color-border-default, #d0d7de)",
-        background: "var(--color-background-primary, #fff)",
+        borderBottom: "1px solid var(--color-border-primary)",
+        background: "var(--color-background-primary)",
         maxHeight: 220,
         display: "flex",
         flexDirection: "column",
@@ -51,10 +51,11 @@ export function CodePanel({ markup }: CodePanelProps) {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "4px 12px",
-          borderBottom: "1px solid var(--color-border-default, #d0d7de)",
-          background: "var(--color-background-secondary, #f6f8fa)",
-          fontSize: 11,
-          color: "var(--color-text-secondary, #656d76)",
+          borderBottom: "1px solid var(--color-border-primary)",
+          background: "var(--color-background-secondary)",
+          fontSize: "var(--font-text-sm-size, 11px)",
+          fontFamily: "var(--font-sans)",
+          color: "var(--color-text-secondary)",
         }}
       >
         <span>Mermaid</span>
@@ -65,15 +66,15 @@ export function CodePanel({ markup }: CodePanelProps) {
             alignItems: "center",
             gap: 4,
             padding: "2px 8px",
-            border: "1px solid var(--color-border-default, #d0d7de)",
-            borderRadius: 4,
+            border: "1px solid var(--color-border-primary)",
+            borderRadius: "var(--border-radius-sm, 4px)",
             background: copied
-              ? "var(--color-success-subtle, #dafbe1)"
-              : "var(--color-background-secondary, #f6f8fa)",
+              ? "var(--color-background-success)"
+              : "var(--color-background-secondary)",
             color: copied
-              ? "var(--color-success-fg, #1a7f37)"
-              : "var(--color-text-primary, inherit)",
-            fontSize: 11,
+              ? "var(--color-text-success)"
+              : "var(--color-text-primary)",
+            fontSize: "var(--font-text-sm-size, 11px)",
             cursor: "pointer",
             lineHeight: 1.4,
             transition: "background 0.15s, color 0.15s",
@@ -91,11 +92,10 @@ export function CodePanel({ markup }: CodePanelProps) {
           padding: "8px 12px",
           overflow: "auto",
           flex: 1,
-          fontSize: 12,
+          fontSize: "var(--font-text-sm-size, 12px)",
           lineHeight: 1.5,
-          fontFamily:
-            'var(--font-mono, ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace)',
-          color: "var(--color-text-primary, inherit)",
+          fontFamily: "var(--font-mono)",
+          color: "var(--color-text-primary)",
           whiteSpace: "pre",
           tabSize: 2,
         }}

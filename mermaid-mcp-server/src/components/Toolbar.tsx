@@ -29,11 +29,12 @@ const buttonStyle: React.CSSProperties = {
   alignItems: "center",
   gap: 4,
   padding: "4px 10px",
-  border: "1px solid var(--color-border-default, #d0d7de)",
-  borderRadius: 6,
-  background: "var(--color-background-secondary, #f6f8fa)",
-  color: "var(--color-text-primary, inherit)",
-  fontSize: 12,
+  border: "1px solid var(--color-border-primary)",
+  borderRadius: "var(--border-radius-md, 6px)",
+  background: "var(--color-background-secondary)",
+  color: "var(--color-text-primary)",
+  fontSize: "var(--font-text-sm-size, 12px)",
+  fontFamily: "var(--font-sans)",
   cursor: "pointer",
   lineHeight: 1.4,
   whiteSpace: "nowrap",
@@ -41,9 +42,9 @@ const buttonStyle: React.CSSProperties = {
 
 const activeButtonStyle: React.CSSProperties = {
   ...buttonStyle,
-  background: "var(--color-accent-fg, #0969da)",
-  color: "#fff",
-  borderColor: "var(--color-accent-fg, #0969da)",
+  background: "var(--color-ring-primary)",
+  color: "var(--color-text-inverse)",
+  borderColor: "var(--color-ring-primary)",
 };
 
 export function Toolbar({
@@ -70,9 +71,10 @@ export function Toolbar({
         alignItems: "center",
         justifyContent: "space-between",
         padding: "6px 12px",
-        borderBottom: "1px solid var(--color-border-default, #d0d7de)",
-        background: "var(--color-background-secondary, #f6f8fa)",
-        fontSize: 12,
+        borderBottom: "1px solid var(--color-border-primary)",
+        background: "var(--color-background-secondary)",
+        fontSize: "var(--font-text-sm-size, 12px)",
+        fontFamily: "var(--font-sans)",
         flexShrink: 0,
         gap: 8,
         flexWrap: "wrap",
@@ -104,7 +106,7 @@ export function Toolbar({
           style={{
             padding: "2px 6px",
             borderRadius: 4,
-            background: "var(--color-neutral-muted, #e0e0e0)",
+            background: "var(--color-background-tertiary)",
             fontSize: 11,
             opacity: 0.8,
           }}
@@ -141,7 +143,7 @@ export function Toolbar({
         </button>
 
         {/* Separator */}
-        <span style={{ borderLeft: "1px solid var(--color-border-default, #d0d7de)", height: 18 }} />
+        <span style={{ borderLeft: "1px solid var(--color-border-primary)", height: 18 }} />
 
         {/* Code view toggle */}
         <button
@@ -153,7 +155,7 @@ export function Toolbar({
         </button>
 
         {/* Separator */}
-        <span style={{ borderLeft: "1px solid var(--color-border-default, #d0d7de)", height: 18 }} />
+        <span style={{ borderLeft: "1px solid var(--color-border-primary)", height: 18 }} />
 
         {/* Drag select toggle */}
         <button

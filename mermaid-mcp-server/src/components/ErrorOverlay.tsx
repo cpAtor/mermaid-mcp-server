@@ -28,7 +28,7 @@ export function ErrorOverlay({ error }: ErrorOverlayProps) {
           gap: 8,
           fontSize: 16,
           fontWeight: 600,
-          color: "var(--color-danger-fg, #cf222e)",
+          color: "var(--color-text-danger)",
         }}
       >
         ⚠ Syntax Error
@@ -40,15 +40,15 @@ export function ErrorOverlay({ error }: ErrorOverlayProps) {
           padding: 16,
           borderRadius: 8,
           border:
-            "1px solid var(--color-danger-emphasis, #cf222e)",
+            "1px solid var(--color-border-danger)",
           background:
-            "var(--color-danger-subtle, #fff5f5)",
-          fontFamily: "monospace",
-          fontSize: 13,
+            "var(--color-background-danger)",
+          fontFamily: "var(--font-mono)",
+          fontSize: "var(--font-text-sm-size, 13px)",
           lineHeight: 1.5,
           whiteSpace: "pre-wrap",
           wordBreak: "break-word",
-          color: "var(--color-danger-fg, #cf222e)",
+          color: "var(--color-text-danger)",
         }}
       >
         {error}

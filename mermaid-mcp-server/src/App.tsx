@@ -7,10 +7,14 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import {
   useApp,
-  useHostStyles,
   useDocumentTheme,
 } from "@modelcontextprotocol/ext-apps/react";
-import type { App as McpApp } from "@modelcontextprotocol/ext-apps";
+import {
+  applyDocumentTheme,
+  applyHostStyleVariables,
+  applyHostFonts,
+} from "@modelcontextprotocol/ext-apps";
+import type { App as McpApp, McpUiHostContext } from "@modelcontextprotocol/ext-apps";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import type { MermaidToolResult, SelectedElement } from "./types.ts";
 import { MermaidRenderer } from "./components/MermaidRenderer.tsx";
@@ -30,6 +34,12 @@ export function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [dragSelectEnabled, setDragSelectEnabled] = useState(false);
   const [showCode, setShowCode] = useState(false);
+  const [safeAreaInsets, setSafeAreaInsets] = useState<{
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  } | null>(null);
   const zoomRef = useRef<ZoomPanHandle>(null);
 
   const handleToolResult = useCallback((result: CallToolResult) => {
@@ -40,8 +50,15 @@ export function App() {
     }
   }, []);
 
+  // Track host context in state for unified handling
+  const [hostContext, setHostContext] = useState<McpUiHostContext | undefined>();
+
   const onAppCreated = useCallback((app: McpApp) => {
     app.ontoolresult = handleToolResult;
+    // Merge partial host context updates into state
+    app.onhostcontextchanged = (ctx) => {
+      setHostContext((prev) => ({ ...prev, ...ctx }));
+    };
   }, [handleToolResult]);
 
   const { app, error: appError } = useApp({
@@ -50,8 +67,37 @@ export function App() {
     onAppCreated,
   });
 
-  // Apply host CSS variables for theme-awareness
-  useHostStyles(app);
+  // Set initial host context after connection
+  useEffect(() => {
+    if (app) {
+      setHostContext(app.getHostContext());
+    }
+  }, [app]);
+
+  // Apply theme, style variables, and fonts whenever host context changes
+  useEffect(() => {
+    if (hostContext?.theme) {
+      applyDocumentTheme(hostContext.theme);
+    }
+    if (hostContext?.styles?.variables) {
+      applyHostStyleVariables(hostContext.styles.variables);
+    }
+    if (hostContext?.styles?.css?.fonts) {
+      applyHostFonts(hostContext.styles.css.fonts);
+    }
+  }, [hostContext]);
+
+  // Sync display mode and safe area from host context
+  useEffect(() => {
+    if (hostContext?.displayMode) {
+      setIsFullscreen(hostContext.displayMode === "fullscreen");
+    }
+    if (hostContext?.safeAreaInsets) {
+      setSafeAreaInsets(hostContext.safeAreaInsets);
+    }
+  }, [hostContext]);
+
+  // Reactive theme for beautiful-mermaid / mermaid.js rendering
   const documentTheme = useDocumentTheme();
   const theme = documentTheme ?? "light";
 
@@ -67,21 +113,6 @@ export function App() {
       console.warn("Display mode change not supported");
     }
   }, [app, isFullscreen]);
-
-  // Listen for host context changes (e.g., display mode updates)
-  useEffect(() => {
-    if (!app) return;
-    const prev = app.onhostcontextchanged;
-    app.onhostcontextchanged = (ctx) => {
-      if (ctx.displayMode) {
-        setIsFullscreen(ctx.displayMode === "fullscreen");
-      }
-      prev?.(ctx);
-    };
-    return () => {
-      app.onhostcontextchanged = prev ?? null;
-    };
-  }, [app]);
 
   // Push selected elements to chat context
   const addSelectionToContext = useCallback(async () => {
@@ -103,7 +134,7 @@ export function App() {
 
   if (appError) {
     return (
-      <div style={{ padding: 16, color: "red" }}>
+      <div style={{ padding: 16, color: "var(--color-text-danger)" }}>
         Failed to connect to host: {String(appError)}
       </div>
     );
@@ -128,6 +159,7 @@ export function App() {
 
   return (
     <div
+      className={`app-container${isFullscreen ? " fullscreen" : ""}`}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -135,6 +167,10 @@ export function App() {
         width: "100%",
         overflow: "hidden",
         position: "relative",
+        paddingTop: safeAreaInsets?.top,
+        paddingRight: safeAreaInsets?.right,
+        paddingBottom: safeAreaInsets?.bottom,
+        paddingLeft: safeAreaInsets?.left,
       }}
     >
       {/* Toolbar */}

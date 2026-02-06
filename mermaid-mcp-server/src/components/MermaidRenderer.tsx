@@ -66,8 +66,7 @@ export function MermaidRenderer({
             startOnLoad: false,
             theme: getMermaidTheme(theme),
             securityLevel: "loose",
-            fontFamily:
-              'var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)',
+            fontFamily: "var(--font-sans)",
           });
 
           const elementId = `mermaid-${uniqueId}`;
@@ -116,9 +115,9 @@ export function MermaidRenderer({
       <div
         style={{
           padding: 16,
-          color: "var(--color-danger-fg, #cf222e)",
-          fontFamily: "monospace",
-          fontSize: 13,
+          color: "var(--color-text-danger)",
+          fontFamily: "var(--font-mono)",
+          fontSize: "var(--font-text-sm-size, 13px)",
           whiteSpace: "pre-wrap",
         }}
       >

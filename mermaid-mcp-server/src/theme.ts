@@ -2,7 +2,7 @@
  * Theme mapping for beautiful-mermaid.
  *
  * Maps the host document theme (light/dark) to a beautiful-mermaid theme
- * and provides color overrides derived from host CSS variables.
+ * and provides color overrides derived from MCP Apps standardized CSS variables.
  */
 import { THEMES } from "beautiful-mermaid";
 
@@ -16,7 +16,8 @@ export function getBeautifulMermaidTheme(
 }
 
 /**
- * Build beautiful-mermaid enrichment colors from host CSS variables.
+ * Build beautiful-mermaid enrichment colors from MCP Apps CSS variables.
+ * Uses the standardized `--color-*` / `--font-*` names from the spec.
  * Falls back to sensible defaults if variables aren't available.
  */
 export function getEnrichmentColors(docTheme: DocumentTheme): {
@@ -39,22 +40,22 @@ export function getEnrichmentColors(docTheme: DocumentTheme): {
     return {
       bg: getVar("--color-background-primary", "#0d1117"),
       fg: getVar("--color-text-primary", "#e6edf3"),
-      line: getVar("--color-border-default", "#30363d"),
-      accent: getVar("--color-accent-fg", "#58a6ff"),
+      line: getVar("--color-border-primary", "#30363d"),
+      accent: getVar("--color-ring-primary", "#58a6ff"),
       muted: getVar("--color-text-secondary", "#8b949e"),
       surface: getVar("--color-background-secondary", "#161b22"),
-      border: getVar("--color-border-default", "#30363d"),
+      border: getVar("--color-border-primary", "#30363d"),
     };
   }
 
   return {
     bg: getVar("--color-background-primary", "#ffffff"),
     fg: getVar("--color-text-primary", "#1f2328"),
-    line: getVar("--color-border-default", "#d0d7de"),
-    accent: getVar("--color-accent-fg", "#0969da"),
+    line: getVar("--color-border-primary", "#d0d7de"),
+    accent: getVar("--color-ring-primary", "#0969da"),
     muted: getVar("--color-text-secondary", "#656d76"),
     surface: getVar("--color-background-secondary", "#f6f8fa"),
-    border: getVar("--color-border-default", "#d0d7de"),
+    border: getVar("--color-border-primary", "#d0d7de"),
   };
 }
 
