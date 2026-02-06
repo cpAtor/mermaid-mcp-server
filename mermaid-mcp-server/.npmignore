@@ -3,6 +3,6 @@ src/
 !dist/**
 tsconfig*.json
 vite.config.ts
-mcp-app.html
+/mcp-app.html
 node_modules/
 .vscode/
