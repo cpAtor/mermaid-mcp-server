@@ -1,0 +1,17 @@
+# Root .npmignore — npm uses this INSTEAD of .gitignore when packing
+.agents/
+.vscode/
+.git/
+node_modules/
+AGENTS.md
+
+# Exclude source files from the subdirectory
+mermaid-mcp-server/src/
+mermaid-mcp-server/*.ts
+mermaid-mcp-server/tsconfig*.json
+mermaid-mcp-server/vite.config.ts
+mermaid-mcp-server/mcp-app.html
+mermaid-mcp-server/node_modules/
+mermaid-mcp-server/.npmignore
+
+# Keep mermaid-mcp-server/dist/ (do NOT exclude it)
